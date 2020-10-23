@@ -4,9 +4,23 @@ import linebot from 'linebot'
 import dotenv from 'dotenv'
 // 引用axios套件
 import axios from 'axios'
+
+import schedule from 'node-schedule'
+
 // 讀取.env
 dotenv.config()
 
+const informations = ''
+
+const updateDate = async () => {
+  const response = await axios.get('https://api.kcg.gov.tw/api/service/Get/aaf4ce4b-4ca8-43de-bfaf-6dc97e89cac0')
+  const informations = response.data.data
+}
+
+schedule.scheduleJob('*/2 * * * *', function () {
+  updateDate()
+})
+updateDate()
 // 設定機器人
 const bot = linebot({
   channelId: process.env.CHANNEL_ID,
@@ -16,13 +30,11 @@ const bot = linebot({
 
 bot.on('message', async (event) => {
   try {
-    const response = await axios.get('https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=6')
     const text = event.message.text
     let reply = ''
-    for (const data of response.data) {
-      if (data.title === text) {
-        reply = data.showInfo[0].locationName
-        break
+    for (const inform of informations) {
+      if (inform.location.includes(text)) {
+        reply = inform.car
       }
     }
     reply = (reply.length === 0) ? '找不到呦~~~' : reply
