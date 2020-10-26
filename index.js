@@ -30,11 +30,10 @@ const bot = linebot({
 
 bot.on('message', async (event) => {
   try {
-    let reply = ''
-    let reply2
+    let reply
     const text = event.message.text
     if (text === 'flex') {
-      reply2 = {
+      reply = {
         type: 'flex',
         altText: 'Flex',
         contents: {
@@ -99,16 +98,15 @@ bot.on('message', async (event) => {
           }
         }
       }
-      event.reply(reply2)
-    }
-
-    for (const inform of informations) {
-      if (inform.作物名稱.includes(text)) {
-        reply += `${inform.市場名稱}市場 : ${inform.作物名稱}的平均價格${inform.平均價}` + '\n'
+    } else {
+      for (const inform of informations) {
+        if (inform.作物名稱.includes(text)) {
+          reply += `${inform.市場名稱}市場 : ${inform.作物名稱}的平均價格${inform.平均價}` + '\n'
+        }
       }
+      reply = (reply.length === 0) ? '找不到呦~~~' : reply
+      event.reply(reply)
     }
-    reply = (reply.length === 0) ? '找不到呦~~~' : reply
-    event.reply(reply)
   } catch (error) {
     event.reply('發生錯誤')
   }
