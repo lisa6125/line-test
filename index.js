@@ -34,7 +34,7 @@ bot.on('message', async (event) => {
     let reply = ''
     for (const inform of informations) {
       if (inform.作物名稱.includes(text)) {
-        reply += inform.作物名稱 + '\n'
+        reply += `${inform.市場名稱}市場 : ${inform.作物名稱}的平均價格${inform.平均價}` + '\n'
       }
     }
     reply = (reply.length === 0) ? '找不到呦~~~' : reply
