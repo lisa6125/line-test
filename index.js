@@ -37,9 +37,8 @@ bot.on('message', async (event) => {
       reply2 = {
         type: 'flex',
         altText: 'Flex',
-        contents: {
-          type: 'carousel',
-          contents: [{
+        contents: [
+          {
             type: 'bubble',
             hero: {
               type: 'image',
@@ -99,8 +98,8 @@ bot.on('message', async (event) => {
               ],
               flex: 0
             }
-          }]
-        }
+          }
+        ]
       }
       event.reply(reply2)
     }
