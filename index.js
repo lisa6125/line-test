@@ -37,69 +37,67 @@ bot.on('message', async (event) => {
       reply2 = {
         type: 'flex',
         altText: 'Flex',
-        contents: [
-          {
-            type: 'bubble',
-            hero: {
-              type: 'image',
-              url: 'https://cc.tvbs.com.tw/img/program/_data/i/upload/2017/04/21/20170421152859-3c494080-me.jpg',
-              size: 'full',
-              aspectRatio: '20:13',
-              aspectMode: 'cover',
-              action: {
-                type: 'uri',
-                uri: 'http://linecorp.com/'
-              }
-            },
-            body: {
-              type: 'box',
-              layout: 'vertical',
-              contents: [
-                {
-                  type: 'text',
-                  text: '蔬果查價',
-                  weight: 'bold',
-                  size: 'xl'
-                }
-              ],
-              backgroundColor: '#E9F5DF'
-            },
-            footer: {
-              type: 'box',
-              layout: 'vertical',
-              spacing: 'sm',
-              contents: [
-                {
-                  type: 'button',
-                  style: 'link',
-                  height: 'sm',
-                  action: {
-                    type: 'message',
-                    label: '直接輸入菜名',
-                    text: 'EX:白菜、西瓜......'
-                  },
-                  color: '#5D8C54'
-                },
-                {
-                  type: 'button',
-                  style: 'link',
-                  height: 'sm',
-                  action: {
-                    type: 'uri',
-                    label: 'WEBSITE',
-                    uri: 'https://www.twfood.cc/'
-                  },
-                  color: '#5D8C54'
-                },
-                {
-                  type: 'spacer',
-                  size: 'sm'
-                }
-              ],
-              flex: 0
+        contents: {
+          type: 'bubble',
+          hero: {
+            type: 'image',
+            url: 'https://cc.tvbs.com.tw/img/program/_data/i/upload/2017/04/21/20170421152859-3c494080-me.jpg',
+            size: 'full',
+            aspectRatio: '20:13',
+            aspectMode: 'cover',
+            action: {
+              type: 'uri',
+              uri: 'http://linecorp.com/'
             }
+          },
+          body: {
+            type: 'box',
+            layout: 'vertical',
+            contents: [
+              {
+                type: 'text',
+                text: '蔬果查價',
+                weight: 'bold',
+                size: 'xl'
+              }
+            ],
+            backgroundColor: '#E9F5DF'
+          },
+          footer: {
+            type: 'box',
+            layout: 'vertical',
+            spacing: 'sm',
+            contents: [
+              {
+                type: 'button',
+                style: 'link',
+                height: 'sm',
+                action: {
+                  type: 'message',
+                  label: '直接輸入菜名',
+                  text: 'EX:白菜、西瓜......'
+                },
+                color: '#5D8C54'
+              },
+              {
+                type: 'button',
+                style: 'link',
+                height: 'sm',
+                action: {
+                  type: 'uri',
+                  label: 'WEBSITE',
+                  uri: 'https://www.twfood.cc/'
+                },
+                color: '#5D8C54'
+              },
+              {
+                type: 'spacer',
+                size: 'sm'
+              }
+            ],
+            flex: 0
           }
-        ]
+        }
       }
       event.reply(reply2)
     }
