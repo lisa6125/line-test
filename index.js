@@ -10,14 +10,14 @@ import schedule from 'node-schedule'
 // 讀取.env
 dotenv.config()
 
-const informations = ''
+let informations = []
 
 const updateDate = async () => {
-  const response = await axios.get('https://api.kcg.gov.tw/api/service/Get/aaf4ce4b-4ca8-43de-bfaf-6dc97e89cac0')
-  const informations = response.data.data
+  const response = await axios.get('https://data.coa.gov.tw/Service/OpenData/FromM/FarmTransData.aspx')
+  informations = response.data
 }
 
-schedule.scheduleJob('*/2 * * * *', function () {
+schedule.scheduleJob('0 0 0 * * *', function () {
   updateDate()
 })
 updateDate()
@@ -33,8 +33,8 @@ bot.on('message', async (event) => {
     const text = event.message.text
     let reply = ''
     for (const inform of informations) {
-      if (inform.location.includes(text)) {
-        reply = inform.car
+      if (inform.作物名稱.includes(text)) {
+        reply += inform.作物名稱 + '\n'
       }
     }
     reply = (reply.length === 0) ? '找不到呦~~~' : reply
