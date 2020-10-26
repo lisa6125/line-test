@@ -36,7 +36,7 @@ bot.on('message', async (event) => {
       reply = {
         type: 'flex',
         altText: 'Flex',
-        contents: {
+        contents: [{
           type: 'bubble',
           hero: {
             type: 'image',
@@ -96,7 +96,7 @@ bot.on('message', async (event) => {
             ],
             flex: 0
           }
-        }
+        }]
       }
     } else {
       for (const inform of informations) {
@@ -105,8 +105,8 @@ bot.on('message', async (event) => {
         }
       }
       reply = (reply.length === 0) ? '找不到呦~~~' : reply
-      event.reply(reply)
     }
+    event.reply(reply)
   } catch (error) {
     event.reply('發生錯誤')
   }
