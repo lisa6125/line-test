@@ -31,7 +31,7 @@ const bot = linebot({
 bot.on('message', async (event) => {
   try {
     let reply = ''
-    let reply2 = ''
+    let reply2
     const text = event.message.text
     if (text === 'flex') {
       reply2 = {
